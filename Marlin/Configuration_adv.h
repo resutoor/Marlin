@@ -57,8 +57,8 @@
 
 //These defines help to calibrate the AD595 sensor in case you get wrong temperature measurements.
 //The measured temperature is defined as "actualTemp = (measuredTemp * TEMP_SENSOR_AD595_GAIN) + TEMP_SENSOR_AD595_OFFSET"
-#define TEMP_SENSOR_AD595_OFFSET 0.0
-#define TEMP_SENSOR_AD595_GAIN   1.0
+#define TEMP_SENSOR_AD595_OFFSET 20.0
+#define TEMP_SENSOR_AD595_GAIN   -1.0
 
 //This is for controlling a fan to cool down the stepper drivers
 //it will turn on when any driver is enabled
