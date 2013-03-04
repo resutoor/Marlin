@@ -365,6 +365,36 @@ void setup()
 }
 
 
+int test_trace_param[0x10] = {0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa,
+			0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa};
+void test_trace_param_set(int idx, int param)
+{
+  test_trace_param[idx] = param;
+}
+
+void test_trace(void)
+{
+  static unsigned long prev_millis = 0;
+  unsigned long curr_millis = millis();
+
+  //print traces once per second
+  if (prev_millis > curr_millis)
+    prev_millis = 0; //overrun
+  if (curr_millis > prev_millis + 1000) {
+    prev_millis = curr_millis;
+
+    SERIAL_ECHOPAIR("0:",(unsigned long)test_trace_param[0]);
+    SERIAL_ECHOPAIR(" 1:",(unsigned long)test_trace_param[1]);
+    SERIAL_ECHOPAIR(" 2:",(unsigned long)test_trace_param[2]);
+    SERIAL_ECHOPAIR(" 3:",(unsigned long)test_trace_param[3]);
+    SERIAL_ECHOPAIR(" 4:",(unsigned long)test_trace_param[4]);
+    SERIAL_ECHOPAIR(" xm:",(unsigned long)READ(X_MAX_PIN));
+    SERIAL_ECHOPAIR(" ym:",(unsigned long)READ(Y_MAX_PIN));
+    SERIAL_ECHOPAIR(" zm:",(unsigned long)READ(Z_MAX_PIN));
+    SERIAL_ECHOLN("");
+  }
+}
+
 void loop()
 {
   if(buflen < (BUFSIZE-1))
@@ -787,7 +817,7 @@ void process_commands()
       }
       calculate_delta(current_position);
       plan_set_position(delta[X_AXIS], delta[Y_AXIS], delta[Z_AXIS], current_position[E_AXIS]);
-      
+
       #ifdef ENDSTOPS_ONLY_FOR_HOMING
         enable_endstops(false);
       #endif
@@ -1792,6 +1822,7 @@ void controllerFan()
 
 void manage_inactivity() 
 { 
+  test_trace();
   if( (millis() - previous_millis_cmd) >  max_inactive_time ) 
     if(max_inactive_time) 
       kill(); 

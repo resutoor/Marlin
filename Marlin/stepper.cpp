@@ -330,6 +330,7 @@ ISR(TIMER1_COMPA_vect)
         WRITE(X_DIR_PIN, INVERT_X_DIR);
       #endif
       count_direction[X_AXIS]=-1;
+
       CHECK_ENDSTOPS
       {
         #if X_MIN_PIN > -1
