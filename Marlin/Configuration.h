@@ -295,9 +295,9 @@ const bool Z_ENDSTOPS_INVERTING = false; // set to true to invert the logic of t
 
 // Manual homing switch locations:
 // For deltabots this means top and center of the cartesian print volume.
-#define MANUAL_X_HOME_POS 50
-#define MANUAL_Y_HOME_POS 50
-#define MANUAL_Z_HOME_POS 400  // Distance between nozzle and print surface after homing.
+#define MANUAL_X_HOME_POS 75
+#define MANUAL_Y_HOME_POS 75
+#define MANUAL_Z_HOME_POS 830  // Distance between nozzle and print surface after homing.
 
 //// MOVEMENT SETTINGS
 #define NUM_AXIS 4 // The axis order in all axis related arrays is X, Y, Z, E
@@ -313,9 +313,9 @@ const bool Z_ENDSTOPS_INVERTING = false; // set to true to invert the logic of t
 #define DEFAULT_RETRACT_ACCELERATION  3000   // X, Y, Z and E max acceleration in mm/s^2 for r retracts
 
 // 
-#define DEFAULT_XYJERK                20.0   // (mm/sec)
-#define DEFAULT_ZJERK                 20.0   // (mm/sec)
-#define DEFAULT_EJERK                 20.0   // (mm/sec)
+#define DEFAULT_XYJERK                10.0   // (mm/sec)
+#define DEFAULT_ZJERK                 10.0   // (mm/sec)
+#define DEFAULT_EJERK                 10.0   // (mm/sec)
 
 //===========================================================================
 //=============================Additional Features===========================
