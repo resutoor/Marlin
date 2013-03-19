@@ -554,6 +554,10 @@ void plan_buffer_line(const float &x, const float &y, const float &z, const floa
   block->steps_e /= 100;
   block->step_event_count = max(block->steps_x, max(block->steps_y, max(block->steps_z, block->steps_e)));
 
+  SERIAL_ECHOPGM("steps_x="); SERIAL_ECHO(block->steps_x);
+  SERIAL_ECHOPGM("steps_y="); SERIAL_ECHO(block->steps_y);
+  SERIAL_ECHOPGM("steps_z="); SERIAL_ECHOLN(block->steps_z);
+
   // Bail if this is a zero-length block
   if (block->step_event_count <= dropsegments)
   { 
@@ -877,6 +881,10 @@ void plan_set_position(const float &x, const float &y, const float &z, const flo
   previous_speed[1] = 0.0;
   previous_speed[2] = 0.0;
   previous_speed[3] = 0.0;
+
+  SERIAL_ECHOPGM("plan_set_position x="); SERIAL_ECHO(position[X_AXIS]);
+  SERIAL_ECHOPGM(" y="); SERIAL_ECHO(position[Y_AXIS]);
+  SERIAL_ECHOPGM(" z="); SERIAL_ECHOLN(position[Z_AXIS]);
 }
 
 void plan_set_e_position(const float &e)

@@ -653,6 +653,9 @@ ISR(TIMER1_COMPA_vect)
     if (step_events_completed >= current_block->step_event_count) {
       current_block = NULL;
       plan_discard_current_block();
+      test_trace_param_set(0, count_position[X_AXIS]);
+      test_trace_param_set(1, count_position[Y_AXIS]);
+      test_trace_param_set(2, count_position[Z_AXIS]);
     }   
   } 
 }
