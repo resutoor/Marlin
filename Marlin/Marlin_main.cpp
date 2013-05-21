@@ -364,6 +364,36 @@ void setup()
   lcd_init();
 }
 
+long test_trace_param[0x10] = {0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa,
+			       0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa};
+void test_trace_param_set(int idx, long param)
+{
+  test_trace_param[idx] = param;
+}
+
+void test_trace(void)
+{
+  static unsigned long prev_millis = 0;
+  unsigned long curr_millis = millis();
+
+  //print traces once per second
+  if (prev_millis > curr_millis)
+    prev_millis = 0; //overrun
+  if (curr_millis > prev_millis + 1000) {
+    prev_millis = curr_millis;
+
+    SERIAL_ECHOPAIR(" ISR count:",(unsigned long)test_trace_param[0]);
+    SERIAL_ECHOPAIR(" raw data:",(unsigned long)test_trace_param[1]);
+    //    SERIAL_ECHOPAIR(" 1 count_position[Y_AXIS]:",(unsigned long)test_trace_param[1]);
+    //    SERIAL_ECHOPAIR(" 2 count_position[Z_AXIS]:",(unsigned long)test_trace_param[2]);
+    //    SERIAL_ECHOPAIR(" 3:",(unsigned long)test_trace_param[3]);
+    //    SERIAL_ECHOPAIR(" 4:",(unsigned long)test_trace_param[4]);
+    //    SERIAL_ECHOPAIR(" xm:",(unsigned long)READ(X_MAX_PIN));
+    //    SERIAL_ECHOPAIR(" ym:",(unsigned long)READ(Y_MAX_PIN));
+    //    SERIAL_ECHOPAIR(" zm:",(unsigned long)READ(Z_MAX_PIN));
+    SERIAL_ECHOLN("");
+  }
+}
 
 void loop()
 {
@@ -399,6 +429,7 @@ void loop()
     bufindr = (bufindr + 1)%BUFSIZE;
   }
   //check heater every n milliseconds
+  test_trace();
   manage_heater();
   manage_inactivity();
   checkHitEndstops();
@@ -1694,6 +1725,8 @@ void calculate_delta(float cartesian[3])
                        - sq(DELTA_TOWER3_X-cartesian[X_AXIS])
                        - sq(DELTA_TOWER3_Y-cartesian[Y_AXIS])
                        ) + cartesian[Z_AXIS];
+  test_trace();
+  
   /*
   SERIAL_ECHOPGM("cartesian x="); SERIAL_ECHO(cartesian[X_AXIS]);
   SERIAL_ECHOPGM(" y="); SERIAL_ECHO(cartesian[Y_AXIS]);

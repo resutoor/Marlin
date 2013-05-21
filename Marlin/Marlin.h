@@ -78,6 +78,8 @@ void serial_echopair_P(const char *s_P, float v);
 void serial_echopair_P(const char *s_P, double v);
 void serial_echopair_P(const char *s_P, unsigned long v);
 
+//This is a way to trace data from IRQ handlers
+void test_trace_param_set(int idx, long param);
 
 //things to write to serial from Programmemory. saves 400 to 2k of RAM.
 FORCE_INLINE void serialprintPGM(const char *str)

@@ -309,6 +309,8 @@ void manage_heater()
   if(temp_meas_ready != true)   //better readability
     return; 
 
+  //  SERIAL_ECHOPAIR(" xxx:",(unsigned long)current_temperature_raw[0]);
+  //  SERIAL_ECHOLN("");
   updateTemperaturesFromRawValues();
 
   for(int e = 0; e < EXTRUDERS; e++) 
@@ -891,6 +893,7 @@ int read_max6675()
 }
 #endif
 
+unsigned long xxx_isr_count=0;
 
 // Timer 0 is shared with millies
 ISR(TIMER0_COMPB_vect)
@@ -1035,6 +1038,9 @@ ISR(TIMER0_COMPB_vect)
   {
     if (!temp_meas_ready) //Only update the raw values if they have been read. Else we could be updating them during reading.
     {
+      xxx_isr_count++;
+      test_trace_param_set(0, xxx_isr_count);
+      test_trace_param_set(1, raw_temp_0_value);
       current_temperature_raw[0] = raw_temp_0_value;
 #if EXTRUDERS > 1
       current_temperature_raw[1] = raw_temp_1_value;
