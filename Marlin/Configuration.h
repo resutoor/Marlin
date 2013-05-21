@@ -62,7 +62,7 @@
 #define DELTA_DIAGONAL_ROD 436.0 // mm
 
 // Horizontal offset from middle of printer to smooth rod center.
-#define DELTA_SMOOTH_ROD_OFFSET 261.0 // mm
+#define DELTA_SMOOTH_ROD_OFFSET 296.0 // mm   286
 
 // Horizontal offset of the universal joints on the end effector.
 #define DELTA_EFFECTOR_OFFSET 33.0 // mm
@@ -107,7 +107,7 @@
 // 52 is 200k thermistor - ATC Semitec 204GT-2 (1k pullup)
 // 55 is 100k thermistor - ATC Semitec 104GT-2 (Used in ParCan) (1k pullup)
 
-#define TEMP_SENSOR_0 1
+#define TEMP_SENSOR_0 -1
 #define TEMP_SENSOR_1 0
 #define TEMP_SENSOR_2 0
 #define TEMP_SENSOR_BED 0
@@ -208,11 +208,11 @@
 
 //this prevents dangerous Extruder moves, i.e. if the temperature is under the limit
 //can be software-disabled for whatever purposes by
-#define PREVENT_DANGEROUS_EXTRUDE
+//#define PREVENT_DANGEROUS_EXTRUDE
 //if PREVENT_DANGEROUS_EXTRUDE is on, you can still disable (uncomment) very long bits of extrusion separately.
 #define PREVENT_LENGTHY_EXTRUDE
 
-#define EXTRUDE_MINTEMP 170
+//#define EXTRUDE_MINTEMP 170
 #define EXTRUDE_MAXLENGTH (X_MAX_LENGTH+Y_MAX_LENGTH) //prevent extrusion of very large distances.
 
 //===========================================================================
@@ -279,9 +279,9 @@ const bool Z_ENDSTOPS_INVERTING = false; // set to true to invert the logic of t
 #define max_software_endstops true //If true, axis won't move to coordinates greater than *_MAX_POS.
 
 #define X_MAX_POS 150
-#define X_MIN_POS (-150)
+#define X_MIN_POS -150
 #define Y_MAX_POS 150
-#define Y_MIN_POS (-150)
+#define Y_MIN_POS -150
 #define Z_MAX_POS MANUAL_Z_HOME_POS
 #define Z_MIN_POS 0
 
@@ -297,7 +297,7 @@ const bool Z_ENDSTOPS_INVERTING = false; // set to true to invert the logic of t
 // For deltabots this means top and center of the cartesian print volume.
 #define MANUAL_X_HOME_POS 0
 #define MANUAL_Y_HOME_POS 0
-#define MANUAL_Z_HOME_POS 830  // Distance between nozzle and print surface after homing.
+#define MANUAL_Z_HOME_POS 630 //837  // Distance between nozzle and print surface after homing.
 
 //// MOVEMENT SETTINGS
 #define NUM_AXIS 4 // The axis order in all axis related arrays is X, Y, Z, E
@@ -305,12 +305,12 @@ const bool Z_ENDSTOPS_INVERTING = false; // set to true to invert the logic of t
 
 // default settings 
 
-#define DEFAULT_AXIS_STEPS_PER_UNIT   {40, 40, 40, 100}
+#define DEFAULT_AXIS_STEPS_PER_UNIT   {53.33, 53.33, 53.33, 100}
 #define DEFAULT_MAX_FEEDRATE          {300, 300, 300, 300}  // (mm/sec)
 #define DEFAULT_MAX_ACCELERATION      {9000, 9000, 9000, 9000}    // X, Y, Z, E maximum start speed for accelerated moves.
 
-#define DEFAULT_ACCELERATION          3000   // X, Y, Z and E max acceleration in mm/s^2 for printing moves
-#define DEFAULT_RETRACT_ACCELERATION  3000   // X, Y, Z and E max acceleration in mm/s^2 for r retracts
+#define DEFAULT_ACCELERATION          1000   // X, Y, Z and E max acceleration in mm/s^2 for printing moves
+#define DEFAULT_RETRACT_ACCELERATION  1000   // X, Y, Z and E max acceleration in mm/s^2 for r retracts
 
 // 
 #define DEFAULT_XYJERK                10.0   // (mm/sec)
