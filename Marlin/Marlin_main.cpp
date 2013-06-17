@@ -375,6 +375,29 @@ void setup()
   lcd_init();
 }
 
+void test_trace(void)
+{
+  static unsigned long prev_millis = 0;
+  unsigned long curr_millis = millis();
+
+  //print traces once per second
+  if (prev_millis > curr_millis)
+    prev_millis = 0; //overrun
+  if (curr_millis > prev_millis + 1000) {
+    prev_millis = curr_millis;
+
+    SERIAL_ECHOPAIR("XXX Z_MIN_PIN:",(unsigned long)READ(Z_MIN_PIN));
+    //SERIAL_ECHOPAIR(" raw data:",(unsigned long)test_trace_param[1]);
+    //    SERIAL_ECHOPAIR(" 1 count_position[Y_AXIS]:",(unsigned long)test_trace_param[1]);
+    //    SERIAL_ECHOPAIR(" 2 count_position[Z_AXIS]:",(unsigned long)test_trace_param[2]);
+    //    SERIAL_ECHOPAIR(" 3:",(unsigned long)test_trace_param[3]);
+    //    SERIAL_ECHOPAIR(" 4:",(unsigned long)test_trace_param[4]);
+    //    SERIAL_ECHOPAIR(" xm:",(unsigned long)READ(X_MAX_PIN));
+    //    SERIAL_ECHOPAIR(" ym:",(unsigned long)READ(Y_MAX_PIN));
+    //    SERIAL_ECHOPAIR(" zm:",(unsigned long)READ(Z_MAX_PIN));
+    SERIAL_ECHOLN("");
+  }
+}
 
 void loop()
 {
@@ -410,6 +433,7 @@ void loop()
     bufindr = (bufindr + 1)%BUFSIZE;
   }
   //check heater every n milliseconds
+  test_trace();
   manage_heater();
   manage_inactivity();
   checkHitEndstops();
