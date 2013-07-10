@@ -385,7 +385,7 @@ void test_trace(void)
   //print traces once per second
   if (prev_millis > curr_millis)
     prev_millis = 0; //overrun
-  if (curr_millis > prev_millis + 1000) {
+  if (curr_millis > prev_millis + 5000) {
     prev_millis = curr_millis;
 
     SERIAL_ECHOPAIR("XXX Z_MIN_PIN:",(unsigned long)READ(Z_MIN_PIN));
@@ -727,6 +727,7 @@ float z_probe() {
   destination[Z_AXIS] = -20;
   prepare_move_raw();
   st_synchronize();
+  checkHitEndstops(); //##001
   endstops_hit_on_purpose();
 
   enable_endstops(false);
@@ -739,6 +740,8 @@ float z_probe() {
   plan_set_position(delta[X_AXIS], delta[Y_AXIS], delta[Z_AXIS],
 		    current_position[E_AXIS]);
 
+  SERIAL_ECHOPAIR("XXX curpos:",(unsigned long)mm);
+  SERIAL_ECHOLN(""); 
   feedrate = 400*60;
   destination[Z_AXIS] = mm+2;
   prepare_move_raw();
@@ -756,6 +759,11 @@ void calibrate_print_surface(float z_offset) {
       } else {
         bed_level[x+3][y+3] = 0.0;
       }
+      SERIAL_ECHOPAIR("XXX2 x:",(long)x);
+      SERIAL_ECHOPAIR(", y:",(long)y);
+      SERIAL_ECHOPAIR(", dest x:",(long)destination[X_AXIS]);
+		      SERIAL_ECHOPAIR(", dest y:",(long)destination[Y_AXIS]);
+      SERIAL_ECHOLN(""); 
     }
     // For unprobed positions just copy nearest neighbor.
     if (abs(y) >= 3) {
@@ -938,7 +946,11 @@ void process_commands()
       deploy_z_probe();
       calibrate_print_surface(z_probe_offset[Z_AXIS] +
         (code_seen(axis_codes[Z_AXIS]) ? code_value() : 0.0));
+      SERIAL_ECHOPAIR("XXX4",(unsigned long)100);
+      SERIAL_ECHOLN("");
       retract_z_probe();
+      SERIAL_ECHOPAIR("XXX5",(unsigned long)100);
+      SERIAL_ECHOLN("");
 
       feedrate = saved_feedrate;
       feedmultiply = saved_feedmultiply;
