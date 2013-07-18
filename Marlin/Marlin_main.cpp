@@ -948,7 +948,7 @@ void process_commands()
       deploy_z_probe();
       calibrate_print_surface(z_probe_offset[Z_AXIS] +
         (code_seen(axis_codes[Z_AXIS]) ? code_value() : 0.0));
-      retract_z_probe();
+      //retract_z_probe(); //This can not be used for now
 
       feedrate = saved_feedrate;
       feedmultiply = saved_feedmultiply;
