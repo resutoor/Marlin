@@ -388,7 +388,9 @@ void test_trace(void)
   if (curr_millis > prev_millis + 5000) {
     prev_millis = curr_millis;
 
-    SERIAL_ECHOPAIR("XXX Z_MIN_PIN:",(unsigned long)READ(Z_MIN_PIN));
+//    SERIAL_ECHOPAIR("XXX Z_MIN_PIN:",(unsigned long)READ(Z_MIN_PIN));
+//    SERIAL_ECHOPAIR("XXX X_MIN_PIN:",(unsigned long)READ(X_MIN_PIN));
+//    SERIAL_ECHOPAIR("XXX Y_MIN_PIN:",(unsigned long)READ(Y_MIN_PIN));
     //SERIAL_ECHOPAIR(" raw data:",(unsigned long)test_trace_param[1]);
     //    SERIAL_ECHOPAIR(" 1 count_position[Y_AXIS]:",(unsigned long)test_trace_param[1]);
     //    SERIAL_ECHOPAIR(" 2 count_position[Z_AXIS]:",(unsigned long)test_trace_param[2]);
@@ -946,11 +948,7 @@ void process_commands()
       deploy_z_probe();
       calibrate_print_surface(z_probe_offset[Z_AXIS] +
         (code_seen(axis_codes[Z_AXIS]) ? code_value() : 0.0));
-      SERIAL_ECHOPAIR("XXX4",(unsigned long)100);
-      SERIAL_ECHOLN("");
       retract_z_probe();
-      SERIAL_ECHOPAIR("XXX5",(unsigned long)100);
-      SERIAL_ECHOLN("");
 
       feedrate = saved_feedrate;
       feedmultiply = saved_feedmultiply;
