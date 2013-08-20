@@ -432,7 +432,7 @@ ISR(TIMER1_COMPA_vect)
       CHECK_ENDSTOPS
       {
         #if Z_MIN_PIN > -1
-          bool z_min_endstop=(READ(Z_MIN_PIN) != Z_ENDSTOPS_INVERTING);
+          bool z_min_endstop=(READ(Z_MIN_PIN) != Z_MINENDSTOP_INVERTING);
           if(z_min_endstop && old_z_min_endstop && (current_block->steps_z > 0)) {
             endstops_trigsteps[Z_AXIS] = count_position[Z_AXIS];
             endstop_z_hit=true;
