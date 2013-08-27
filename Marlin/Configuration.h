@@ -304,7 +304,7 @@ const bool Z_MINENDSTOP_INVERTING = true; // set to true to invert the logic of 
 #define NUM_AXIS 4 // The axis order in all axis related arrays is X, Y, Z, E
 #define HOMING_FEEDRATE {100*60, 100*60, 100*60, 0}  // set the homing speeds (mm/min)
 
-#define Z_PROBE_OFFSET {-35.0, 17.0, -4.5, 0}  // Distance between hotend nozzle and deployed bed leveling probe.
+#define Z_PROBE_OFFSET {-23.0, 10.0, -4.8, 0}  // Distance between hotend nozzle and deployed bed leveling probe.
 
 // default settings 
 
