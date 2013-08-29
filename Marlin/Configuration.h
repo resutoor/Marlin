@@ -279,7 +279,7 @@ const bool Z_MINENDSTOP_INVERTING = true; // set to true to invert the logic of 
 #define min_software_endstops true //If true, axis won't move to coordinates less than *_MIN_POS.
 #define max_software_endstops true //If true, axis won't move to coordinates greater than *_MAX_POS.
 
-#define X_MAX_POS 150
+#define X_MAX_POS 160
 #define X_MIN_POS -150
 #define Y_MAX_POS 150
 #define Y_MIN_POS -150
