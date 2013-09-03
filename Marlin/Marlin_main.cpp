@@ -657,31 +657,41 @@ static void homeaxis(int axis) {
 
 void deploy_z_probe() {
   feedrate = 400*60;
-  destination[X_AXIS] = 25;
-  destination[Y_AXIS] = 93;
+  destination[X_AXIS] = 120;
+  destination[Y_AXIS] = -90;
   destination[Z_AXIS] = 100;
   prepare_move_raw();
 
-  feedrate = 20*60;
-  destination[X_AXIS] = 0;
+  destination[X_AXIS] = 160;
+  prepare_move_raw();
+
+  //push the z probe lever against the tower to release the z probe
+  feedrate = 80*60;
+  destination[Y_AXIS] = -40;
   prepare_move_raw();
   st_synchronize();
 }
 
 void retract_z_probe() {
   feedrate = 400*60;
-  destination[X_AXIS] = -40;
-  destination[Y_AXIS] = -82;
+  destination[X_AXIS] = 160;
+  destination[Y_AXIS] = -40;
+  destination[Z_AXIS] = 100;
   prepare_move_raw();
 
-  // Move the nozzle below the print surface to push the probe up.
-  feedrate = 20*60;
-  destination[Z_AXIS] = current_position[Z_AXIS] - 14;
+  // Move the z probe against the little tower to push the probe up.
+  feedrate = 400*60;
+  destination[Z_AXIS] = 51;
+  prepare_move_raw();
+
+  destination[Z_AXIS] = 70;
   prepare_move_raw();
 
   feedrate = 400*60;
-  destination[Z_AXIS] = current_position[Z_AXIS] + 30;
+  destination[X_AXIS] = 0;
+  destination[Y_AXIS] = 0;
   prepare_move_raw();
+
   // Try again because sometimes the last move doesn't flush properly.
   destination[Z_AXIS] = current_position[Z_AXIS] + 0.1;
   prepare_move_raw();
@@ -912,7 +922,7 @@ void process_commands()
       deploy_z_probe();
       calibrate_print_surface(z_probe_offset[Z_AXIS] +
         (code_seen(axis_codes[Z_AXIS]) ? code_value() : 0.0));
-      //retract_z_probe(); //This can not be used for now
+      retract_z_probe();
 
       feedrate = saved_feedrate;
       feedmultiply = saved_feedmultiply;
