@@ -304,12 +304,12 @@ const bool Z_MINENDSTOP_INVERTING = true; // set to true to invert the logic of 
 #define NUM_AXIS 4 // The axis order in all axis related arrays is X, Y, Z, E
 #define HOMING_FEEDRATE {100*60, 100*60, 100*60, 0}  // set the homing speeds (mm/min)
 
-#define Z_PROBE_OFFSET {-23.0, 10.0, -4.8, 0}  // Distance between hotend nozzle and deployed bed leveling probe.
+#define Z_PROBE_OFFSET {-23.0, 10.0, -5.0, 0}  // Distance between hotend nozzle and deployed bed leveling probe.
 
 // default settings 
 
 #define DEFAULT_AXIS_STEPS_PER_UNIT   {53.33, 53.33, 53.33, 802}
-#define DEFAULT_MAX_FEEDRATE          {300, 300, 300, 300}  // (mm/sec)
+#define DEFAULT_MAX_FEEDRATE          {600, 600, 600, 600}  // (mm/sec)
 #define DEFAULT_MAX_ACCELERATION      {9000, 9000, 9000, 9000}    // X, Y, Z, E maximum start speed for accelerated moves.
 
 #define DEFAULT_ACCELERATION          1000   // X, Y, Z and E max acceleration in mm/s^2 for printing moves
@@ -330,7 +330,7 @@ const bool Z_MINENDSTOP_INVERTING = true; // set to true to invert the logic of 
 // M501 - reads parameters from EEPROM (if you need reset them after you changed them temporarily).  
 // M502 - reverts to the default "factory settings".  You still need to store them in EEPROM afterwards if you want to.
 //define this to enable eeprom support
-//#define EEPROM_SETTINGS
+#define EEPROM_SETTINGS
 //to disable EEPROM Serial responses and decrease program space by ~1700 byte: comment this out:
 // please keep turned on if you can.
 //#define EEPROM_CHITCHAT
