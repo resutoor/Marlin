@@ -279,8 +279,8 @@ const bool Z_MINENDSTOP_INVERTING = true; // set to true to invert the logic of 
 #define min_software_endstops true //If true, axis won't move to coordinates less than *_MIN_POS.
 #define max_software_endstops true //If true, axis won't move to coordinates greater than *_MAX_POS.
 
-#define X_MAX_POS 160
-#define X_MIN_POS -150
+#define X_MAX_POS 165
+#define X_MIN_POS -165
 #define Y_MAX_POS 150
 #define Y_MIN_POS -150
 #define Z_MAX_POS MANUAL_Z_HOME_POS
@@ -298,7 +298,7 @@ const bool Z_MINENDSTOP_INVERTING = true; // set to true to invert the logic of 
 // For deltabots this means top and center of the cartesian print volume.
 #define MANUAL_X_HOME_POS 0
 #define MANUAL_Y_HOME_POS 0
-#define MANUAL_Z_HOME_POS 627.7  // Distance between nozzle and print surface after homing.
+#define MANUAL_Z_HOME_POS 500  // Distance between nozzle and print surface after homing.
 
 //// MOVEMENT SETTINGS
 #define NUM_AXIS 4 // The axis order in all axis related arrays is X, Y, Z, E

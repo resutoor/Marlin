@@ -657,17 +657,18 @@ static void homeaxis(int axis) {
 
 void deploy_z_probe() {
   feedrate = 400*60;
-  destination[X_AXIS] = 120;
-  destination[Y_AXIS] = -90;
+  destination[X_AXIS] = 160;
+  destination[Y_AXIS] = -100;
   destination[Z_AXIS] = 150;
   prepare_move_raw();
 
-  destination[X_AXIS] = 160;
+  destination[X_AXIS] = 175;
+  destination[Y_AXIS] = -90;
   prepare_move_raw();
 
   //push the z probe lever against the tower to release the z probe
-  feedrate = 80*60;
-  destination[Y_AXIS] = -40;
+  feedrate = 40*60;
+  destination[Y_AXIS] = -41;
   prepare_move_raw();
   st_synchronize();
 }
@@ -676,8 +677,8 @@ void retract_z_probe() {
   //Note! calibrate_print_surface() must be called before this, so that
   //prepare_move() can be used. Otherwise prepare_move_raw() must be used.
   feedrate = 400*60;
-  destination[X_AXIS] = 160;
-  destination[Y_AXIS] = -40;
+  destination[X_AXIS] = 170;
+  destination[Y_AXIS] = -55;
   destination[Z_AXIS] = 100;
   prepare_move();
 
